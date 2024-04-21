@@ -1,0 +1,37 @@
+# Client: Oudshoorn
+# Group Name: ByteMe
+# Contractors: Joellen A., Kyle B., Hanna Z., Alex H., Joshua T., JR V.
+# Date: 3/22/2024
+# docker-compose.yml
+# Create the docker container for all the services we require
+
+version: '3.9'
+services:
+  db: 
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=${DB_NAME} 
+      - MYSQL_USER=${DB_USER} 
+      - MYSQL_PASSWORD=${DB_PASS} # this should live in a env var
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1 # equivalent to True
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d" # this is how we persist a sql db even when container stops
+  www:
+    image: php:apache
+    container_name: php_apache_container
+    volumes:
+      - "./:/var/www/html" # sync the current dir on local machine to the dir of container
+    ports:
+      - 8800:80
+      - 443:443 # for future ssl traffic
+    depends_on:
+      - phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    depends_on:
+      - db

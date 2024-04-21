@@ -1,0 +1,162 @@
+/*
+* Client: Professor Michael Oudshoorn  
+* Group Name: Byte Me                
+* Contractors: Joellen A., Kyle B., Hanna Z., Alex H., Joshua T., JR V.  
+* Date: 3/22/2024
+
+* File Name: main.css
+
+* Description: This CSS file contains styles for a web application's user interface, 
+specifically designed for a product management system or similar application.
+ It includes styles for body, headings, lists, links, tables, forms, and divisional 
+ layouts to create a visually coherent and accessible user experience. The file also
+  specifies styles for specific sections of the page such as the header, main content 
+  area, sidebar, footer, and forms related to product management.
+
+* Languages Used: CSS.
+
+/* General styles for HTML elements to create a consistent look across the web application */
+
+body {
+    margin-top: 0;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+    font-size: 150%;
+    margin: 0;
+    padding: .5em 0 .25em;
+}
+h2 {
+    font-size: 120%;
+    margin: 0;
+    padding: .25em 0 .5em;
+}
+h1, h2 {
+    color: rgb(247, 234, 54);
+}
+
+ul {
+    margin: 0 0 1em 0;
+    padding: 0 0 0 2.5em;
+}
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.nav li {
+    padding-bottom: 0.5em;
+}
+
+a {
+    color: rgb(69, 85, 106);   
+    font-weight: bold;
+    
+}
+a:hover {
+    color: blue;
+}
+
+table {
+    border: 1px solid rgb(254, 208, 54);
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px dashed black;
+    padding: .2em .5em .2em .5em;
+    vertical-align: top;
+    text-align: left;
+    color: white;
+}
+form {
+    margin: 0;
+}
+br {
+    clear: left;
+}
+
+/* the styles for the div tags that divide the page into sections */
+#page {
+    width: 760px;
+    margin: 0 auto;
+}
+#header {
+    margin: 0;
+    padding: .5em 2em;
+    border: none; 
+
+}
+#header h1 {
+    margin: 0;
+    padding: .5em 0;
+    color: black;
+    border: none; 
+    border-top: none;
+
+}
+#main {
+    margin: 0;
+    padding: .5em 2em;
+    border: none; 
+}
+
+#sidebar {
+    float: left;
+    width: 150px;
+}
+
+#content {
+    float: left;
+    width: 500px;
+    padding-bottom: 1.5em;
+}
+#left_column {
+    float: left;
+    width: 150px;
+    padding-left: 1.5em;
+}
+#right_column {
+    float: left;
+    padding-left: 1em;
+}
+#footer {
+    clear: both;
+    margin-top: 1em;
+    padding-right: 1em;
+}
+#footer p {
+    text-align: right;
+    font-size: 80%;
+    margin: 1em 0;
+}
+
+.right {
+    text-align: right;
+}
+
+
+/********************************************************************
+* Additional styles for the Product Manager application
+********************************************************************/
+#add_product_form {
+    margin: .5em 0 2em;
+}
+#add_product_form label {
+    width: 6em;
+    padding-right: 1em;
+    padding-bottom: .5em;
+    float: left;
+}
+#add_product_form input {
+    float: left;
+}
+#add_product_form input[text] {
+    width: 15em;
+}

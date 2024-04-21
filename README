@@ -1,0 +1,159 @@
+# Client: Oudshoorn
+# Group Name: ByteMe
+# Contractors: Joellen A., Kyle B., Hanna Z., Alex H., Joshua T., JR V.
+# Date: 4/15/2024
+# File Name: README
+
+
+Purpose: Included is a series of .php files and docker files for the purpose of displaying the data in a stored database.
+
+The .php files are for our GUI which with the docker running can be found at localhost:8800 which will open index.php.
+
+The docker-compose.yml file is paired with .env to set up the docker which has services for phpmyadmin, apache, and mariadb.  
+The mariadb is mounted in the directory db, which contains our files for our database.  
+
+The directory Formulas hold all of our code we used to calculate the data to put in our time table.  
+
+Finally, contained is two scripts. Currently they only work on Mac, but that should be changed in the future.
+run.sh starts the docker and configures it so that it should be ready to use. 
+stop.sh closes the docker 
+
+
+File Structure:
+*php files: These files constitute the Graphical User Interface (GUI) for the project. When the Docker container is running, the GUI can be accessed at localhost:8800.
+*docker-compose.yml: This file, along with .env, configures the Docker environment. It sets up services for phpMyAdmin, Apache, and MySQL.
+*db directory: Contains files related to the MariaDB database. The MariaDB service is mounted in this directory.
+*Formulas directory: Holds code utilized for calculating the data to be displayed in the timetable.
+
+Scripts:
+*run.sh: A script used to start the Docker container and configure it for use. Currently, it's mentioned that this script only works on Mac, with the suggestion that it will be made platform-independent in the future.
+stop.sh: A script to close the Docker container.
+
+Graphical User Interface:
+
+*File Name: repo.php
+
+Description: This PHP script generates daily reports for Comfort 
+Airlines, focusing on operational metrics for specific aircraft
+ identified by their tail numbers. The file connects to a MySQL 
+ database to retrieve flight data, calculates various performance 
+ metrics such as on-time departures, on-time arrivals, and hours 
+ operated. It supports a dynamic date range and allows users to 
+ select a specific tail number to generate detailed daily operational
+ reports. The script also calculates and displays aggregate metrics
+  over a specified period, providing insights into the efficiency 
+  and reliability of airline operations.
+
+Input: User-selected tail number and operational data retrieved from
+ the 'FLIGHT' and 'AIRCRAFT' tables in the Comfort Airlines database.
+
+Output: HTML tables displaying daily operational metrics for the 
+selected aircraft, including number of flights operated, passengers 
+transported, on-time departure and arrival percentages, and total 
+operational hours. The report also includes a summary of these 
+metrics over the chosen period.
+
+Functions:
+- fetchFlightData($connect, $tailNumber, $dayOffset): Retrieves 
+and calculates daily operational metrics for a given aircraft and day.
+- getOptions($conn, $column, $selected): Generates HTML option 
+tags for dropdown menus based on database entries.
+
+Languages Used: PHP for server-side logic, HTML for content structure, CSS for styling.
+
+*File Name: calc.php
+
+
+Description: This file is designed to calculate and display operational costs,
+revenue, and occupancy information for Comfort Airlines over a specific period.
+It connects to a MySQL database to fetch flight information, calculates various
+costs such as fuel, leasing, and terminal fees, and aggregates these to provide
+a financial summary. The output includes detailed tables showcasing operational
+costs, revenue generated per flight, actual occupancy rates, and the total
+operational cost over a two-week period. Additionally, it computes maintenance
+costs and the impact of downtime on revenue, providing a comprehensive profit
+and loss report.
+
+
+Input: Flight information from the database, including tail numbers, flight dates,
+and distances.
+
+
+Output: HTML tables displaying operational costs per day, total operational costs
+over two weeks, revenue generated, actual occupancy, and overall financial summaries
+including maintenance and downtime impacts.
+Functions: The file includes PHP code for database connection, data fetching and
+processing, cost calculations based on flight data, and dynamic HTML content rendering
+for the financial report.
+
+
+Languages Used: PHP for backend processing and calculations, HTML for content structure,
+and CSS for styling.
+
+
+*File Name: index.php
+
+
+Description: This file serves as the backend and frontend interface for
+displaying airport flight information, including arrivals and departures.
+It connects to a database for retrieving flight and airport data, handles
+user input from a dropdown menu to select an airport, and displays formatted
+flight information based on the selection. The main functionalities include
+querying the database for arrivals and departures data, formatting and
+displaying this data in an HTML structure, and allowing the user to
+toggle between viewing arrivals or departures.
+
+
+Input: User-selected airport code from a dropdown menu.
+
+
+Output: Displays flight information for arrivals and departures including
+flight number, number of passengers, destination or departure airport,
+scheduled and actual arrival or departure times, and the aircraft's tail
+number. It also displays the flight status (e.g., On-Time, Delayed, Cancelled, Early).
+
+
+Functions: formatField (for HTML formatting of data), database query
+preparation and execution, user input handling, and dynamic content
+display based on user selection.
+
+
+Languages Used: PHP for backend logic and data handling, HTML for
+structure, CSS for styling, and JavaScript for dynamic content display.
+
+*File Name: route.php
+
+Description: This file serves as the main interface for querying and 
+displaying possible flight routes for Comfort Airlines. It interacts
+with a MySQL database to retrieve flight data based on user inputs,
+including departure and arrival airports, and a specific date. It 
+implements a search algorithm to find and display up to three possible
+routes, considering direct and multi-stop flight options. Additional
+unctionalities include map visualizations to depict routes and 
+significant geographical markers for better spatial understanding.
+
+Input: User-defined criteria for flight routes, including
+'from' airport, 'to' airport, and travel date.
+
+Output: Displays a list of up to three possible flight routes in 
+both textual and graphical (map) formats. Each route details include 
+flight durations, distances, and stopovers if any. The output is 
+dynamically adjusted based on the user's input and the availability 
+of flight data for the given date.
+
+Functions: 
+- getOptions($conn, $column, $selected): Generates HTML option
+ tags for form selects based on database entries.
+- getAirportCoordinates($conn, $airportCode): Fetches 
+geographical coordinates for specified airport codes.
+- findThreeRoutesBFS($conn, $from, $to, $date): Implements a
+Breadth-First Search algorithm to determine possible routes 
+from source to destination considering specified travel date.
+
+Languages Used: PHP for server-side logic, HTML for content 
+structure, CSS for styling, and JavaScript for interactive 
+elements, particularly for integrating Leaflet.js for map
+representations.
+
+*error.php and comfort_db_error.php: These files handle error reporting for the system. `error.php` is used for general error handling, while `comfort_db_error.php` specifically addresses database-related errors.
+*comfort_db.php: Manages database connections and operations, essential for data handling across all functionalities provided by the system.
